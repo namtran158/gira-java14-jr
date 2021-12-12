@@ -19,6 +19,7 @@ spring:
     driver-class-name: org.postgresql.Driver
 
 springdoc:  api-docs:    enabled: true
+    path: /openapi/v3/api-docs
   swagger-ui:
-    url: /swagger-ui.html
+    path: /swagger-ui.html
   packages-to-scan:  - cybersoft.javabackend.girajava14jr
