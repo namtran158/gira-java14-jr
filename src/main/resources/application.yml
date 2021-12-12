@@ -15,9 +15,7 @@ spring:
   jackson:
     serialization:      fail-on-empty-beans: false       
   flyway:
-    url: jdbc:postgresql://localhost:5432/gira
-    user: postgres
-    password: admin
+    enabled: true
     driver-class-name: org.postgresql.Driver
 
 springdoc:  api-docs:    enabled: true
