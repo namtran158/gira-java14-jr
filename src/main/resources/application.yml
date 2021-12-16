@@ -1,7 +1,5 @@
 ## Datasource
 spring:
-  config:
-    import: openapi.yml   
   security:
     user:      name: admin
       password: 1234       datasource:     url: jdbc:postgresql://localhost:5432/gira
@@ -23,3 +21,8 @@ springdoc:  api-docs:
   swagger-ui:
     path: /swagger-ui.html
   packages-to-scan:  - cybersoft.javabackend.girajava14jr
+  
+api:
+  role:
+    name: role controller
+    description: role endpoints
