@@ -7,7 +7,6 @@ spring:
     password: admin   
   jpa:
     show-sql: true
-    generate-ddl: true
     hibernate:
       ddl-auto: validate      
   jackson:

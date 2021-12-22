@@ -32,8 +32,8 @@ public class RoleControllerImpl implements RoleController {
 			return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
 		}
 		
-		RoleDTO createRole = service.create(dto);
-		return new ResponseEntity<>(createRole, HttpStatus.OK);
+		RoleDTO createdRole = service.create(dto);
+		return new ResponseEntity<>(createdRole, HttpStatus.OK);
 	}
 
 }
