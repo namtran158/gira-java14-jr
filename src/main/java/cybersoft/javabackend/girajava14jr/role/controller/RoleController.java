@@ -34,7 +34,7 @@ public interface RoleController {
 		@ApiResponse(responseCode = "200", description = "create role successfully")
 	})
 	@PostMapping(value = "/role")
-	public ResponseEntity<Object> createRoles(
+	public ResponseEntity<Object> createRole(
 			@Parameter(description = "role dto") @Valid @RequestBody RoleDTO dto,
 			BindingResult bindingResult
 		);
