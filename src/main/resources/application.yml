@@ -10,18 +10,23 @@ spring:
     password: admin
   jpa:
     show-sql: true
-    hibernate:      ddl-auto: validate
+    hibernate:
+      ddl-auto: validate   
   jackson:
-    serialization:      fail-on-empty-beans: false
+    serialization:
+      fail-on-empty-beans: false
   flyway:
     enabled: true
     driver-class-name: org.postgresql.Driver
-    
-springdoc:  api-docs:    path: /openapi/v3/api-docs
+
+springdoc:
+  api-docs:
+    path: /openapi/v3/api-docs
   swagger-ui:
     path: /swagger-ui.html
-  packages-to-scan:  - cybersoft.javabackend.girajava14jr
-
+  packages-to-scan:
+  - cybersoft.javabackend.girajava14jr
+  
 api:
   role:
     name: role controller
