@@ -15,8 +15,8 @@ public class RoleControllerImpl implements RoleController {
 	
 	private RoleService service;
 	
-	public RoleControllerImpl(RoleService service) {
-		this.service = service;
+	public RoleControllerImpl(RoleService roleService) {
+		this.service = roleService;
 	}
 	
 	@Override
@@ -27,7 +27,7 @@ public class RoleControllerImpl implements RoleController {
 	}
 
 	@Override
-	public ResponseEntity<Object> createRoles(RoleDTO dto, BindingResult bindingResult) {
+	public ResponseEntity<Object> createRole(RoleDTO dto, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
 			return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
 		}
