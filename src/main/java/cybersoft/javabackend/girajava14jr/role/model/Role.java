@@ -9,14 +9,14 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import cybersoft.javabackend.girajava14jr.common.model.BaseEntity;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
-@AllArgsConstructor
+@SuperBuilder
 @NoArgsConstructor
 @Entity
 @Table(name = "gira_role")
