@@ -12,6 +12,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import cybersoft.javabackend.girajava14jr.security.jwt.JWTAuthorizationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -19,6 +22,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	private UserDetailsService userDetailsService;
+	
+	@Autowired
+	private JWTAuthorizationFilter filter;
 	
 	@Bean
 	public PasswordEncoder getPasswordEncoder() {
@@ -45,6 +51,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// cấu hình session
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		
+		// add jwt filter
+		http.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
+		
 		// disable csrf
 		http.csrf().disable();
 		
@@ -53,7 +62,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/swagger-ui.html").permitAll()
 			.antMatchers("/swagger-ui/**").permitAll()
 			.antMatchers("/openapi/**").permitAll()
-			.antMatchers("/api/**").permitAll()
+			.antMatchers("/api/**").authenticated()
 			.anyRequest().authenticated();
 	}
 	
