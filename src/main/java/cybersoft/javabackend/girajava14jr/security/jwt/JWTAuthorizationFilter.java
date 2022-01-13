@@ -17,7 +17,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Component
+@Slf4j
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
 	
 	@Autowired
