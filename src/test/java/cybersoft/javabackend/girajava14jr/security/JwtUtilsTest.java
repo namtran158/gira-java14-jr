@@ -2,6 +2,7 @@ package cybersoft.javabackend.girajava14jr.security;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +54,7 @@ public class JwtUtilsTest {
 	public void shouldGenerateJwtTokenSuccessfully() {
 		String token = utils.generateJwtToken(validAuth);
 		
-		assertNotEquals(token, false);
+		assertNotEquals(token, null);
 	}
 	
 	@Test
@@ -68,14 +69,14 @@ public class JwtUtilsTest {
 	public void shouldValidateCorrectToken() {
 		String token = utils.generateJwtToken(validAuth);
 		
-		assertNotEquals(utils.validateJwtToken(token), false);
+		assertEquals(utils.validateJwtToken(token), true);
 	}
 	
 	@Test
 	public void shouldValidateInCorrectToken() {
 		String token = "Anh Nam đẹp trai";
 		
-		assertNotEquals(utils.validateJwtToken(token), true);
+		assertEquals(utils.validateJwtToken(token), false);
 	}
 	
 //	@Test

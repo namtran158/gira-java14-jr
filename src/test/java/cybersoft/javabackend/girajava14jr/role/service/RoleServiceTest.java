@@ -6,14 +6,19 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import cybersoft.javabackend.girajava14jr.role.dto.RoleDTO;
+import lombok.extern.slf4j.Slf4j;
 
+@TestInstance(Lifecycle.PER_CLASS)
 @SpringBootTest
 @Transactional
+@Slf4j
 public class RoleServiceTest {
 	
 	@Autowired
@@ -21,6 +26,8 @@ public class RoleServiceTest {
 	
 	@BeforeAll
 	public void setupTest() {
+		log.debug("Post Construct has been called.");
+		
 		RoleDTO dto = RoleDTO.builder()
 							.code("TST")
 							.name("TESTROLE")
