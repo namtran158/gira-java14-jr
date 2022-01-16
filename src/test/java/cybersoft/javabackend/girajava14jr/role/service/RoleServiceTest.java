@@ -24,16 +24,17 @@ public class RoleServiceTest {
 	@Autowired
 	private RoleService service;
 	
+	private RoleDTO dto;
+	
 	@BeforeAll
 	public void setupTest() {
 		log.debug("Post Construct has been called.");
 		
-		RoleDTO dto = RoleDTO.builder()
+		dto = RoleDTO.builder()
 							.code("TST")
 							.name("TESTROLE")
 							.description("TEST DESCRIPTION")
 							.build();
-		RoleDTO result = service.create(dto);
 	}
 	@Test
 	public void shouldLoadRoleServiceNormally() {
@@ -42,6 +43,8 @@ public class RoleServiceTest {
 	
 	@Test
 	public void shouldFoundDtos() {
+		RoleDTO result  = service.create(dto);
+		assertNotEquals(result, null);
 		List<RoleDTO> dtos = service.findAllDTO();
 		
 		assertNotEquals(dtos.size(), 0);
