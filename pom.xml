@@ -15,7 +15,7 @@
 	<name>gira-java14-jr</name>
 	<description>Cybersoft Gira Application</description>
 
-		<properties>
+	<properties>
 		<java.version>1.8</java.version>
 		<org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
 		<lombok.version>1.18.14</lombok.version>

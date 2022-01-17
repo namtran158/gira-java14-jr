@@ -9,6 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import cybersoft.javabackend.girajava14jr.common.exception.IncorrectLoginException;
 import cybersoft.javabackend.girajava14jr.security.dto.LoginDTO;
@@ -16,6 +17,7 @@ import cybersoft.javabackend.girajava14jr.security.jwt.JwtUtils;
 import cybersoft.javabackend.girajava14jr.user.model.User;
 import cybersoft.javabackend.girajava14jr.user.repository.UserRepository;
 
+@Service
 public class AuthServiceImpl implements AuthService {
 	
 	@Autowired
@@ -32,13 +34,11 @@ public class AuthServiceImpl implements AuthService {
 
 	@Override
 	public String login(LoginDTO dto) {
-		dto.setPassword(encoder.encode(dto.getPassword()));
 		// 1. search user by username and password
-		Optional<User> userOpt = repository.findByUsername(
-				dto.getUsername());
+		Optional<User> userOpt = repository.findByUsername(dto.getUsername());
 		
 		// 2. if user is null return IncorrectLoginException
-		if(!userOpt.isPresent()) {
+		if(userOpt.isPresent()) {
 			throw new IncorrectLoginException("Incorrect username or password");
 		}
 		
