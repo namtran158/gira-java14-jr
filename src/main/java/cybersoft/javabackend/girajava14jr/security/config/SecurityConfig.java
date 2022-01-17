@@ -50,12 +50,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				
 		// cấu hình session
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+		// disable csrf
+		http.csrf().disable();
 		
 		// add jwt filter
 		http.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
-		
-		// disable csrf
-		http.csrf().disable();
 		
 		// cấu hình xác thực cho các api
 		http.antMatcher("/**").authorizeRequests()
@@ -64,6 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/openapi/**").permitAll()
 			.antMatchers("/api/**").authenticated()
 			.anyRequest().authenticated();
+		
 	}
 	
 	
