@@ -38,7 +38,7 @@ public class AuthServiceImpl implements AuthService {
 		Optional<User> userOpt = repository.findByUsername(dto.getUsername());
 		
 		// 2. if user is null return IncorrectLoginException
-		if(userOpt.isPresent()) {
+		if(!userOpt.isPresent()) {
 			throw new IncorrectLoginException("Incorrect username or password");
 		}
 		
