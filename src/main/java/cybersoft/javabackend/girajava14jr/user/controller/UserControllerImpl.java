@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 import cybersoft.javabackend.girajava14jr.common.ResponseHandler;
 import cybersoft.javabackend.girajava14jr.user.dto.CreateUserDTO;
 import cybersoft.javabackend.girajava14jr.user.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
+@Slf4j
 public class UserControllerImpl implements UserController {
 	
 	@Autowired
@@ -29,8 +31,16 @@ public class UserControllerImpl implements UserController {
 		if(bindingResult.hasErrors()) {
 			return ResponseHandler.getErrorResponse(bindingResult, HttpStatus.BAD_REQUEST);
 		}
+		log.debug("=====createUser=====");
+		log.debug("=====START=====");
+		log.debug("CreateUserDTO: {}", dto);
 		
 		CreateUserDTO createdUser = service.create(dto);
+		
+		log.debug("=====createUser=====");
+		log.debug("=====END=====");
+		log.debug("Result ==>> : {}", createdUser);
+		
 		return ResponseHandler.getResponse(createdUser, HttpStatus.OK);
 	}
 
