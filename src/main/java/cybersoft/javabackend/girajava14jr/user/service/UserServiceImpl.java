@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
 	public CreateUserDTO create(CreateUserDTO dto) {
 		User user = UserMapper.INSTANCE.createUserDtoToUserEntity(dto);
 		
-		user.setPassword(encoder.encode(dto.getPassword()));;
+		user.setPassword(encoder.encode(dto.getPassword()));
 		
 		User createdUser = repository.save(user);
 		createdUser.setPassword(null);
