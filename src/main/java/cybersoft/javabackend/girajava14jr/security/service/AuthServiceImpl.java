@@ -43,7 +43,7 @@ public class AuthServiceImpl implements AuthService {
 		}
 		
 		String encodePassword = userOpt.get().getPassword();
-		if(encoder.matches(dto.getPassword(), encodePassword)) {
+		if(!encoder.matches(dto.getPassword(), encodePassword)) {
 			throw new IncorrectLoginException("Incorrect username or password");
 		}
 		// 3. create authentication and set info SecurityContext

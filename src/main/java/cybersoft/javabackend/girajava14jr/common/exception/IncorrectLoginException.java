@@ -1,6 +1,6 @@
 package cybersoft.javabackend.girajava14jr.common.exception;
 
-public class IncorrectLoginException extends RuntimeException {
+public class IncorrectLoginException extends GiraRuntimeException {
 	
 	public IncorrectLoginException(String message) {
 		super(message);
