@@ -13,7 +13,6 @@ import lombok.extern.slf4j.Slf4j;
 public class GlobalExceptionHandler {
 	
 	@ExceptionHandler(value = {NotFoundException.class})
-	// @ResponseStatus(value = HttpStatus.BAD_GATEWAY, reason = "Result was not found")
 	public Object handleNotFoundException(NotFoundException e) {
 		log.debug("ERROR CATCHED: {}", e);
 		return ResponseHandler.getErrorResponse(e.getMessage(), HttpStatus.NOT_FOUND);
@@ -21,7 +20,7 @@ public class GlobalExceptionHandler {
 	
 	@ExceptionHandler(value = {Exception.class})
 	public Object handleUnexpectedException(Exception e) {
-		log.error("Error has been occurred ====>");
+		log.error("Error has been occurred ====> {}", e.getMessage());
 		return ResponseHandler.getErrorResponse(e.getMessage(), HttpStatus.BAD_REQUEST);
 	}
 	

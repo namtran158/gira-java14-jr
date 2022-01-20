@@ -1,7 +1,6 @@
 package cybersoft.javabackend.girajava14jr.security.service;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,7 +40,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 				currentUser.getPassword(), authorities);
 	}
 
-	private Collection<? extends GrantedAuthority> getAuthorities(User currentUser) {
+	private List<? extends GrantedAuthority> getAuthorities(final User currentUser) {
 		List<GrantedAuthority> authorities = new ArrayList<>();
 		
 		for(GroupRole group : currentUser.getGroups()) {
