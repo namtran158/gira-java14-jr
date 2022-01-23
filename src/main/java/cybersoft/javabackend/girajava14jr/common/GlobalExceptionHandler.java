@@ -20,7 +20,7 @@ public class GlobalExceptionHandler {
 	
 	@ExceptionHandler(value = {Exception.class})
 	public Object handleUnexpectedException(Exception e) {
-		log.error("Error has been occurred ====> {}", e.getMessage());
+		log.error("Error has been occurred ====> {}", e);
 		return ResponseHandler.getErrorResponse(e.getMessage(), HttpStatus.BAD_REQUEST);
 	}
 	

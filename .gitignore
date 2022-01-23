@@ -9,10 +9,8 @@ buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
 .project
-.project
 .classpath
-.classpath
-.classpath
+*.log
 log/19-01-2022/gira-log-19-01-2022-1.log
 log/gira-log.log
 log/19-01-2022/gira-log-19-01-2022-7.log
