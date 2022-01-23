@@ -37,7 +37,6 @@ public class UserServiceImpl implements UserService {
 		user.setPassword(encoder.encode(dto.getPassword()));
 		
 		User createdUser = repository.save(user);
-		
 		createdUser.setPassword(null);
 		
 		return UserMapper.INSTANCE.userEntityToCreateUserDTO(createdUser);
