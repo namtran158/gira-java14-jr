@@ -2,6 +2,7 @@ package cybersoft.javabackend.girajava14jr.common.model;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
@@ -31,7 +32,7 @@ public class BaseEntity implements Serializable {
 	
 	@Id
 	@GeneratedValue
-	protected Long id;
+	protected UUID id;
 	
 	@Version
 	protected int version;

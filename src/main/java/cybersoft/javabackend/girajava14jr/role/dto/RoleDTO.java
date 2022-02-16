@@ -1,8 +1,9 @@
 package cybersoft.javabackend.girajava14jr.role.dto;
 
+import java.util.UUID;
+
 import javax.validation.constraints.NotBlank;
 
-import cybersoft.javabackend.girajava14jr.role.validation.annotation.UniqueRoleCode;
 import cybersoft.javabackend.girajava14jr.role.validation.annotation.UniqueRoleName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,14 +17,14 @@ import lombok.Setter;
 @NoArgsConstructor
 @Builder
 public class RoleDTO {
-	private long id;
+	private UUID id;
 	
 	@NotBlank(message = "{role.name.not-blank}")
-	@UniqueRoleName(message = "This role name can not be used.")
+	@UniqueRoleName(message = "This role name can not be used. Please choose another one.")
 	private String name;
 	
 	@NotBlank(message = "{role.code.not-blank}")
-	@UniqueRoleCode(message = "This role code can not be used.")
+	// @UniqueRoleCode()
 	private String code;
 	
 	@NotBlank(message = "{role.description.not-blank}")

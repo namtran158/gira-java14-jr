@@ -2,6 +2,7 @@ package cybersoft.javabackend.girajava14jr.role.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
@@ -52,7 +53,7 @@ public class RoleServiceImpl implements RoleService {
 	}
 
 	@Override
-	public RoleDTO updateRole(long id, UpdateRoleDTO dto) {
+	public RoleDTO updateRole(UUID id, UpdateRoleDTO dto) {
 		Optional<Role> roleOpt = repository.findById(id);
 		
 		if(!roleOpt.isPresent()) {
@@ -81,11 +82,11 @@ public class RoleServiceImpl implements RoleService {
 	}
 
 	@Override
-	public void deleteRole(long id) {
-		Optional<Role> roleOpt = repository.findById(id);
+	public void deleteRole(UUID roleId) {
+		Optional<Role> roleOpt = repository.findById(roleId);
 		
 		if(!roleOpt.isPresent()) {
-			throw new InvalidRoleException("Role id is not existed.");
+			throw new InvalidRoleException("Role ID is not existed.");
 		}
 		
 		repository.delete(roleOpt.get());
