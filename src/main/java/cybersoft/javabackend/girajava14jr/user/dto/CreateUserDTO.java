@@ -1,5 +1,7 @@
 package cybersoft.javabackend.girajava14jr.user.dto;
 
+import java.util.UUID;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -11,6 +13,9 @@ import lombok.ToString;
 @Setter
 @ToString
 public class CreateUserDTO {
+	
+	private UUID id;
+	
 	@NotBlank
 	private String username;
 	

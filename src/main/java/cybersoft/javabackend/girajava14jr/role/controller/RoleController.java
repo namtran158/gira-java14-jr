@@ -1,5 +1,7 @@
 package cybersoft.javabackend.girajava14jr.role.controller;
 
+import java.util.UUID;
+
 import javax.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
@@ -48,18 +50,18 @@ public interface RoleController {
 	})
 	@PutMapping(value = "/role/{id}")
 	public ResponseEntity<Object> updateRole(
-			@Parameter(description = "role id") @PathVariable("id") long  id,
+			@Parameter(description = "role id") @PathVariable("id") UUID  id,
 			@Parameter(description = "role dto") @Valid @RequestBody UpdateRoleDTO dto,
 			BindingResult bindingResult
 		);
 	
-	@Operation(method = "delete", description = "delete role")
-	@ApiResponses({
-		@ApiResponse(responseCode = "400", description = "invalid id"),
-		@ApiResponse(responseCode = "200", description = "deleted role successfully")
-	})
+	@Operation(method = "delete", description = "delete role",
+			responses = {
+					@ApiResponse(responseCode = "400", description = "invalid id"),
+					@ApiResponse(responseCode = "200", description = "deleted role successfully")
+			})
 	@DeleteMapping(value = "/role/{id}")
 	public ResponseEntity<Object> deleteRole(
-			@Parameter(description = "role id") @PathVariable("id") long id
-		);
+			@Parameter(description = "role id") @PathVariable("id") UUID id
+			);
 }

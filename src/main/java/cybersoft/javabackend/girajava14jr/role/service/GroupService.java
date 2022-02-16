@@ -2,8 +2,11 @@ package cybersoft.javabackend.girajava14jr.role.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.UUID;
 
 import cybersoft.javabackend.girajava14jr.role.dto.GroupDTO;
+import cybersoft.javabackend.girajava14jr.role.dto.GroupProjection;
 import cybersoft.javabackend.girajava14jr.role.model.GroupRole;
 
 public interface GroupService {
@@ -15,9 +18,11 @@ public interface GroupService {
 
 	Optional<GroupRole> findByCode(String roleCode);
 
-	void deleteGroupRole(long id);
+	void deleteRole(UUID id);
 
-	void addUser(long groupId, long userId);
+	void addUser(UUID groupId, UUID userId);
 
-	void removeUser(long groupId, long userId);
+	void removeUser(UUID groupId, UUID userId);
+
+	Set<GroupProjection> findAllDto();
 }

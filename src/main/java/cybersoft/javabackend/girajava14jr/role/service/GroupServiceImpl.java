@@ -2,22 +2,27 @@ package cybersoft.javabackend.girajava14jr.role.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import cybersoft.javabackend.girajava14jr.common.exception.GiraEntityNotFoundException;
 import cybersoft.javabackend.girajava14jr.role.dto.GroupDTO;
 import cybersoft.javabackend.girajava14jr.role.dto.GroupMapper;
+import cybersoft.javabackend.girajava14jr.role.dto.GroupProjection;
 import cybersoft.javabackend.girajava14jr.role.model.GroupRole;
 import cybersoft.javabackend.girajava14jr.role.repository.GroupRepository;
 import cybersoft.javabackend.girajava14jr.user.model.User;
 import cybersoft.javabackend.girajava14jr.user.repository.UserRepository;
 
 @Service
+@Transactional
 public class GroupServiceImpl implements GroupService {
 	@Autowired
 	private GroupRepository repository;
@@ -46,23 +51,22 @@ public class GroupServiceImpl implements GroupService {
 	}
 
 	@Override
-	public Optional<GroupRole> findByName(String groupName) {
-		return repository.findByName(groupName);
+	public Optional<GroupRole> findByName(String roleName) {
+		return repository.findByName(roleName);
 	}
 
 	@Override
-	public Optional<GroupRole> findByCode(String groupCode) {
-		return repository.findByCode(groupCode);
+	public Optional<GroupRole> findByCode(String roleCode) {
+		return repository.findByCode(roleCode);
 	}
 
 	@Override
-	public void deleteGroupRole(long id) {
+	public void deleteRole(UUID id) {
 		repository.deleteById(id);
-
 	}
 
 	@Override
-	public void addUser(long groupId, long userId) {
+	public void addUser(UUID groupId, UUID userId) {
 		GroupRole group = null;
 		try {
 			group = repository.getById(groupId);
@@ -80,7 +84,7 @@ public class GroupServiceImpl implements GroupService {
 	}
 
 	@Override
-	public void removeUser(long groupId, long userId) {
+	public void removeUser(UUID groupId, UUID userId) {
 		GroupRole group = repository.findById(groupId)
 					.orElseThrow(
 					() -> new GiraEntityNotFoundException("Group role is not existed."));
@@ -91,5 +95,13 @@ public class GroupServiceImpl implements GroupService {
 
 		group.removeUser(user);
 		repository.save(group);
+		
+		// SIDE EFFECTS
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Set<GroupProjection> findAllDto() {
+		return repository.findAllDto();
 	}
 }
